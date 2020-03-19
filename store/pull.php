@@ -4,11 +4,12 @@ include '../db_connection.php';
 $conn = OpenCon();
 
 $num = 0;
-$srch = $_GET['srch'];
-if($srch==NULL){
+
+if(!isset($_GET['search'])){
     $sql = "SELECT * FROM data";
 } else {
-    $sql = "SELECT * FROM data WHERE name LIKE '%$srch%'";
+    $search = $_GET['search'];
+    $sql = "SELECT * FROM data WHERE name LIKE '%$search%'";
 }
 
 $result = mysqli_query($conn, $sql);
@@ -35,5 +36,3 @@ while($row = mysqli_fetch_array($result)){
 }
 
 CloseCon($conn);
-
-?>

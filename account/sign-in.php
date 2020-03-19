@@ -1,6 +1,7 @@
 <?php
+session_start();
 
-include 'db_connection.php';
+include '../db_connection.php';
 $conn = OpenCon();
 
 ini_set('display_errors', '1');
@@ -8,10 +9,10 @@ ini_set('error_reporting', E_ALL);
 
 //pull form fields into php variables
 $user = $_POST['user'];
-$pass_unen = $_POST['pass'];
-$pass_encr = hash('sha256', $pass_unen);
+$password_raw = $_POST['pass'];
+$password_encrypted = hash('sha256', $password_raw);
 
-$sql = "SELECT Id FROM users WHERE (user = '$user' OR emil = '$user') AND pass = '$pass_encr'";
+$sql = "SELECT Id FROM users WHERE (user = '$user' OR emil = '$user') AND pass = '$password_encrypted'";
 
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result)!=0){
@@ -21,5 +22,3 @@ if(mysqli_num_rows($result)!=0){
 }
 
 CloseCon($conn);
-
-?>

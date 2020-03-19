@@ -1,12 +1,8 @@
-<?php
-    session_start();
-?>
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
-        <title>Electrostore</title>
+        <title>ElectroStore</title>
         <link rel="stylesheet" type="text/css" href="styles.css"></head>
     <body>
         <div class="header">
@@ -26,10 +22,10 @@
             </div>
         </div>
 
-        <div class="main_banner" onclick="window.location.href='store/store.php'">
+        <div class="main_banner" onclick="SetUsername()">
             <div class="banner_text">
-                <a>ElectroStore</a>
-                <img src="images/down_arrow.png" width="100px" height="100px">
+                <a onclick="window.location.href='store/store.php'">ElectroStore</a>
+                <img src="images/down_arrow.png" width="100px" height="100px" alt="GO SIGN">
             </div>
         </div>
         <div class="footer">
@@ -37,9 +33,9 @@
                 <ul>ElectroStore</ul>
                 <ul>team@ElectroStore.com</ul>
                 <ul>1-8000-ELCT</ul>
-            </p>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="account/account_settings.js"></script>
     </body>
 </html>
