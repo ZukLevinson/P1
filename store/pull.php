@@ -17,7 +17,7 @@ while($row = mysqli_fetch_array($result)){
         echo "<div class='items'>";
     }
     echo "<div class='itemEx'>";
-        echo "<img class='banner' src='images/item_ex.jpg' id='pic1'>";
+        echo "<img class='banner' src='../images/item_ex.jpg' id='pic1'>";
         echo "<a class='ttl'>".$row['name']."</a>";
         echo "<ul class='desc'>".$row['dscr']."</ul>";
         echo "<div class='summery'>";

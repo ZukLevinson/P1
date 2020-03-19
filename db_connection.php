@@ -2,8 +2,8 @@
 
 function OpenCon()
 {
-    $dbhost = "localhost";
-    $dbuser = "admin";
+    $dbhost = "192.168.1.17";
+    $dbuser = "root";
     $dbpass = "&jhuVig1572#";
     $db = "practice";
 
