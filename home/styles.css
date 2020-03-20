@@ -51,6 +51,9 @@ body, html{
     text-decoration: none;
     color:rgb(236, 236, 236);
 }
+.links a:active{
+    color:gray;
+}
 
 .main_banner{
     width:80%;
@@ -294,9 +297,6 @@ label{
     width:auto;
     background-color: #f1f1f1;
 }
-#sign-up{
-    display:block;
-}
-#sign-in{
-    display:none;
+#login{
+    cursor:pointer;
 }

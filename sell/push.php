@@ -1,6 +1,7 @@
 <?php
+include '../home/db_connection.php';
 
-include 'db_connection.php';
+session_start();
 $conn = OpenCon();
 
 //pull form fields into php variables
@@ -11,21 +12,36 @@ $quan = $_POST['quan'];
 $catg = $_POST['catg'];
 $ship = $_POST['ship'];
 
-if($ship == "No"){ //Switch to the specific number
+if ($ship == "No") { //Switch to the specific number
     $ship = $_POST['ship_other'];
 }
 
- //Input into the database
-$sql = "INSERT INTO data (name, dscr, pric, quan, catg, ship)
-VALUES ('$name', '$dscr', '$pric', '$quan', '$catg', '$ship')";
+if(isset($_SESSION['UserId'])) {
+    $required = array('name', 'dscr', 'pric', 'quan', 'catg');
+    $error = false;
+    foreach($required as $field) {
+        if (empty($_POST[$field])) {
+            $_SESSION['Errors_sell'] = array("Enter all fields.");
+            header('Location: ../sell/sell.php');
+            exit();
+        }
+    }
 
-if (mysqli_query($conn, $sql)) {
-    $posting = TRUE; //Worked
+    unset($_SESSION['Errors_sell']);
+    $user = $_SESSION['UserId'];
+
+    //Input into the database
+    $sql = "INSERT INTO data (Item, Description, Price, Quantity, Category, Shipping, SellerID) VALUES ('$name', '$dscr', '$pric', '$quan', '$catg', '$ship','$user')";
+
+    if (mysqli_query($conn, $sql)) {
+        header('Location: ../store/store.php');
+    } else {
+        echo "<a>".mysqli_error($conn)."</a>";
+    }
 } else {
-    $posting = FALSE; //Reason lies within mysqli_error($conn)
+    $_SESSION['Errors_sell'] = array("Log in");
+    header('Location: ../sell/sell.php');
 }
 
 //close to sql
 CloseCon($conn);
-
-?>

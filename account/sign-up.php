@@ -1,6 +1,6 @@
 <?php
 
-include '../db_connection.php';
+include '../../home/db_connection.php';
 $conn = OpenCon();
 
 ini_set('display_errors', '1');
@@ -9,11 +9,10 @@ ini_set('error_reporting', E_ALL);
 //pull form fields into php variables
 $user = $_POST['user'];
 $emil = $_POST['emil'];
-$pass_unen = $_POST['pass'];
-$pass_encr = hash('sha256', $pass_unen);
+$pass_raw = $_POST['pass'];
+$pass_encrypted = hash('sha256', $pass_raw);
 
-$sql = "INSERT INTO users (user, pass, emil)
-VALUES ('$user', '$pass_encr', '$emil')";
+$sql = "INSERT INTO users (Username, Password, Email) VALUES ('$user', '$pass_encrypted', '$emil')";
 
 ini_set('display_errors', '1');
 ini_set('error_reporting', E_ALL);
@@ -24,10 +23,8 @@ if (mysqli_query($conn, $sql)) {
 } else {
     $posting = FALSE; //Reason lies within mysqli_error($conn)
     echo "<a>NO: ". mysqli_error($conn) ."</a>";
-    echo "<a>". $pass_encr ."</a>";
+    echo "<a>". $pass_encrypted ."</a>";
 }
 
 //close to sql
 CloseCon($conn);
-
-?>

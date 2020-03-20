@@ -1,24 +1,33 @@
 <?php
-session_start();
+include '../home/db_connection.php';
 
-include '../db_connection.php';
+session_start();
 $conn = OpenCon();
 
 ini_set('display_errors', '1');
 ini_set('error_reporting', E_ALL);
 
-//pull form fields into php variables
-$user = $_POST['user'];
-$password_raw = $_POST['pass'];
-$password_encrypted = hash('sha256', $password_raw);
+if (!isset($_SESSION['UserId']) ) {
+    if (isset($_POST['user']) && isset($_POST['pass'])) {
+        unset($_SESSION['Errors']);
 
-$sql = "SELECT Id FROM users WHERE (user = '$user' OR emil = '$user') AND pass = '$password_encrypted'";
+        //pull form fields into php variables
+        $user = $_POST['user'];
+        $password_raw = $_POST['pass'];
+        $password_encrypted = hash('sha256', $password_raw);
 
-$result = mysqli_query($conn, $sql);
-if(mysqli_num_rows($result)!=0){
-    $_SESSION['UserId'] = mysqli_fetch_assoc($result)['Id'];
-} else {
-    echo "<a>NO</a>";
-}
+        $sql = "SELECT ID, Username FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$password_encrypted'";
 
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) != 0) {
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $_SESSION['UserId'] = $row['ID'];
+            $_SESSION['UserName'] = $row['Username'];
+            header('Location: ../account/sign.php');
+        } else {
+            $_SESSION['Errors'] = array("Your username or password was incorrect.");
+            header('Location: ../account/sign.php');
+        }
+    }
+}header('Location: ../account/sign.php');
 CloseCon($conn);
