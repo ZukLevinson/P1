@@ -22,7 +22,7 @@
 
     function template_header($title)
     {
-        if (isset($_SESSION['UserName'])) {
+        if (isset($_SESSION['UserId'])) {
             $username = $_SESSION['UserName'];
             $userId = $_SESSION['UserId'];
         } else {
@@ -30,7 +30,7 @@
             $userId = '';
         }
 
-        if(isset($_SESSION['Cart'])){
+        if (isset($_SESSION['Cart'])) {
             $cart_status = count($_SESSION['Cart']);
         } else {
             $cart_status = "CART";
@@ -57,7 +57,7 @@
                         <div class="links right">
                             <a href="../sell/sell.php">SELL</a>
                             <a id="login" href="../account/account.php?user=$userId">$username</a>
-                            <a id="cart">$cart_status</a>
+                            <a id="cart" href="../store/cart.php">$cart_status</a>
                         </div>
                     </div>
 EOT;
@@ -72,4 +72,29 @@ EOT;
             <ul>1-8000-ELCT</ul>
         </div>
 EOT;
+    }
+
+    function RemoveSession()
+    {
+        $userId = $_SESSION['UserId'];
+        setcookie("userID", "");
+        $sessionId = session_id();
+        $conn = OpenCon();
+        $sql = "DELETE FROM user_session WHERE UserID = '$userId' AND Session = '$sessionId'";
+        CloseCon($conn);
+        return mysqli_query($conn, $sql) ? true : false;
+    }
+
+    function SumTotal()
+    {
+        $userId = $_COOKIE['userID'];
+        $conn = OpenCon();
+        $sql = "SELECT Total FROM transactions WHERE UserID = '$userId'";
+        $result = mysqli_query($conn, $sql);
+        $total = 0;
+        while ($row = $result->fetch_Array(MYSQLI_ASSOC)) {
+            $total += $row['Total'];
+        }
+        CloseCon($conn);
+        return $total;
     }

@@ -21,6 +21,7 @@
             $description = $row['Description'];
             $price = $row['Price'];
             $id = $row['ID'];
+            $image = $row['Image'];
 
             if ($num == 0) {
                 echo "<div class='items'>";
@@ -28,8 +29,10 @@
             echo <<<EOT
                 <div class='itemEx'>
                     <form style="height:100%;" method="get">
-                        <img class='banner' src='../images/item_ex.jpg' id='pic1'>
-                        <a class='ttl' id='Item' onclick="window.location+='?item=$id'">$item</a>
+                        <img class='banner' src='../images/uploads/$image' id='pic1'>
+                        <div style="overflow:hidden;white-space:nowrap;width:inherit;text-overflow: ellipsis;">
+                            <a style="cursor: pointer;width:inherit;text-overflow: ellipsis;" class='ttl' id='Item' onclick="window.location+='?item=$id'">$item</a>
+                        </div>
                         <ul class='desc'>$description</ul>
                         <div class='summery'>
                             <a class='prc'>$price$</a>

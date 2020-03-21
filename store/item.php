@@ -22,6 +22,7 @@
             $category = $row['Category'];
             $shipping = $row['Shipping'];
             $sellerId = $row['SellerID'];
+            $image = $row['Image'];
             template_header($item . " | ElectroStore");
 
 
@@ -31,7 +32,7 @@
         <form name="form" action="" method="get">
         <tr style="width:100%;">
             <td style="width:50%;">
-                <img src="../images/item_ex.jpg" alt="Item Imagery" style="max-width:100%;max-height:100%;">
+                <img src="../images/uploads/$image" alt="$item Imagery" style="max-width:100%;max-height:100%;">
             </td>
             <td style="width:50%;padding-left:3%;">
                 <table>

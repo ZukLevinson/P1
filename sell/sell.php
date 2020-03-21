@@ -1,20 +1,15 @@
 <?php
     session_start();
 
-    include('../home/functions.php');
-
-    if(isset($_GET['logout'])){
-        session_destroy();
-        header('Location: ../home/index.php');
-    }
+    include_once('../home/functions.php');
+    template_header('Sell Online');
 ?>
-        <?php template_header('Account') ?>
         <div class="sell_banner">
             <form method="post" action="push.php" enctype="multipart/form-data">
                 <table style="width:100%;">
                     <tr>
                         <td style="width:50%;text-align: center;">
-<!--                            <input type="file" name="image">-->
+                            <input type="file" name="image">
                             <input type="hidden" name="size" value="1000000">
                             <ul>Description</ul>
                             <textarea cols="40" rows="4" name="dscr"></textarea>
@@ -56,7 +51,7 @@
                     <tr>
                         <td style="width:50%">
                             <ul>Free Shipping</ul>
-                            <label for="Yes"><input type="radio" name="ship" value="0" id="Yes" />Yes</label>   
+                            <label for="Yes"><input type="radio" name="ship" value="0" id="Yes" checked="checked"/>Yes</label>
                             <label for="No"><input type="radio" name="ship" value="No" id="No" />No</label>
                             <input type="number" name="ship_other" id="ship_other">
                         </td>

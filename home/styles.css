@@ -156,6 +156,8 @@ body, html{
     text-transform: uppercase;
     padding-left:10px;
     padding-right:10px;
+    max-height: 40px;
+    overflow: hidden;
 }
 .itemEx .desc{
     height:20%;
@@ -331,4 +333,22 @@ label{
     padding-left:10%;
     padding-right:10%;
     background-color: #d9d9d9;
+}
+
+.cart{
+    width:60%;
+    height:70%;
+    background-color: #f1f1f1;
+    overflow:auto;
+    margin: 20px auto 60px;
+    text-align:center;
+    font-size:30px;
+}
+.cart td{
+    font-size: 16px;
+    text-align: center;
+}
+.cart ul{
+    padding-inline-start: 0px;
+
 }

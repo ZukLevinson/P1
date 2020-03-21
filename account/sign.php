@@ -1,17 +1,17 @@
 <?php
     session_start();
 
-    include('../home/functions.php');
+    include_once('../home/functions.php');
+    template_header('Sign in or Sign up');
 
     if (isset($_GET['logout'])) {
         session_destroy();
         header('Location: ../home/index.php');
     }
     if (isset($_SESSION['UserId'])){
-        header('Location: ../account/account.php?user='.$_SESSION['UserId']);
+        header('Location: ../account/account.php?user='.$_COOKIE['userID']);
     }
 ?>
-<?php template_header('Sign in or Sign up') ?>
 <div class="login" id="sign-in" style="display: block;">
     <a>Log In</a>
     <form action="../account/sign-in.php" method="POST">
@@ -45,10 +45,8 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <a style="font-size: 12px;">Don't have a user yet? <a onclick="InOrUp()"
-                                                                          style="text-decoration: underline;font-size: 12px; color:black;">Sign
-                            up!</a></a>
+                <td onclick="InOrUp()">
+                    <a style="font-size: 12px;">Don't have a user yet? <a id="signage" style="text-decoration: underline;font-size: 12px; color:black;">Sign up!</a></a>
                 </td>
             </tr>
         </table>

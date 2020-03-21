@@ -11,6 +11,8 @@ $pric = $_POST['pric'];
 $quan = $_POST['quan'];
 $catg = $_POST['catg'];
 $ship = $_POST['ship'];
+$image = $_FILES['image']['name'];
+$target = "../images/uploads/".basename($image);
 
 if ($ship == "No") { //Switch to the specific number
     $ship = $_POST['ship_other'];
@@ -23,7 +25,6 @@ if(isset($_SESSION['UserId'])) {
         if (empty($_POST[$field])) {
             $_SESSION['Errors_sell'] = array("Enter all fields.");
             header('Location: ../sell/sell.php');
-            exit();
         }
     }
 
@@ -31,7 +32,8 @@ if(isset($_SESSION['UserId'])) {
     $user = $_SESSION['UserId'];
 
     //Input into the database
-    $sql = "INSERT INTO data (Item, Description, Price, Quantity, Category, Shipping, SellerID) VALUES ('$name', '$dscr', '$pric', '$quan', '$catg', '$ship','$user')";
+    $sql = "INSERT INTO data (Item, Description, Price, Quantity, Category, Shipping, SellerID, Image) VALUES ('$name', '$dscr', '$pric', '$quan', '$catg', '$ship','$user', '$image')";
+    move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
     if (mysqli_query($conn, $sql)) {
         header('Location: ../store/store.php');
