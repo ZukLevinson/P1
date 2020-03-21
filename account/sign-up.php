@@ -1,6 +1,6 @@
 <?php
 
-include '../../home/db_connection.php';
+include '../../home/functions.php';
 $conn = OpenCon();
 
 ini_set('display_errors', '1');

@@ -1,35 +1,34 @@
 <?php
-include '../home/db_connection.php';
+    include_once '../home/functions.php';
 
-session_start();
-$conn = OpenCon();
+    session_start();
+    $conn = OpenCon();
 
-ini_set('display_errors', '1');
-ini_set('error_reporting', E_ALL);
+    ini_set('display_errors', '1');
+    ini_set('error_reporting', E_ALL);
 
-$_SESSION['Cart'] = array();
+    if (!isset($_SESSION['UserId'])) {
+        if (isset($_POST['user']) && isset($_POST['pass'])) {
+            unset($_SESSION['Errors']);
 
-if (!isset($_SESSION['UserId']) ) {
-    if (isset($_POST['user']) && isset($_POST['pass'])) {
-        unset($_SESSION['Errors']);
+            //pull form fields into php variables
+            $user = $_POST['user'];
+            $password_raw = $_POST['pass'];
+            $password_encrypted = hash('sha256', $password_raw);
 
-        //pull form fields into php variables
-        $user = $_POST['user'];
-        $password_raw = $_POST['pass'];
-        $password_encrypted = hash('sha256', $password_raw);
+            $sql = "SELECT ID, Username FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$password_encrypted'";
 
-        $sql = "SELECT ID, Username FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$password_encrypted'";
-
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) != 0) {
-            $row = $result->fetch_array(MYSQLI_ASSOC);
-            $_SESSION['UserId'] = $row['ID'];
-            $_SESSION['UserName'] = $row['Username'];
-            header('Location: ../account/sign.php');
-        } else {
-            $_SESSION['Errors'] = array("Your username or password was incorrect.");
-            header('Location: ../account/sign.php');
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) != 0) {
+                $row = $result->fetch_array(MYSQLI_ASSOC);
+                $_SESSION['UserId'] = $row['ID'];
+                $_SESSION['UserName'] = $row['Username'];
+                header('Location: ../account/account.php?user='.$_SESSION['UserId']);
+            } else {
+                $_SESSION['Errors'] = array("Your username or password was incorrect.");
+                header('Location: ../account/sign.php');
+            }
         }
     }
-}header('Location: ../account/sign.php');
-CloseCon($conn);
+
+    CloseCon($conn);

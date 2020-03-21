@@ -1,5 +1,5 @@
 <?php
-include '../home/db_connection.php';
+include '../home/functions.php';
 
 session_start();
 $conn = OpenCon();

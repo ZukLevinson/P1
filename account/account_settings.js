@@ -20,3 +20,7 @@ login.onclick = function(){
         // window.location += '?logout=yes';
     }
 };
+
+function colorRed(id){
+    document.getElementById(id).style.color="Red";
+}

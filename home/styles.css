@@ -82,6 +82,7 @@ body, html{
 .store{
     width:80%;
     height:auto;
+    margin-top:20px;
     padding-left:10%;
     padding-right:10%;
     background-color: #d9d9d9;
@@ -192,7 +193,7 @@ body, html{
     height:70%;
     background-color: #f1f1f1;
     overflow:auto;
-    margin: 80px auto auto;
+    margin: 20px auto 60px;
     text-align:center;
     font-size:30px;
 }
@@ -227,13 +228,13 @@ body, html{
     padding:20px;
     position: relative;
     bottom: 0;
-    margin-top:60px;
+    /*margin-top:60px;*/
 }
 
 .sell_banner{
     background-color:#f1f1f1;
     width:80%;
-    margin:auto;
+    margin: 20px auto 60px;
 }
 .sell_banner ul,input{
     font-size:14px;
@@ -304,4 +305,30 @@ label{
 }
 #login{
     cursor:pointer;
+}
+
+.itemPage {
+    width:80%;
+    height:auto;
+    min-height: 700px;
+    padding-left:10%;
+    padding-right:10%;
+    background-color: #d9d9d9;
+}
+
+.itemPage a{
+    font-size: 40px;
+}
+.itemPage p{
+    font-size: 20px;
+    color:dimgray;
+}
+
+.account{
+    width:80%;
+    height:auto;
+    min-height: 700px;
+    padding-left:10%;
+    padding-right:10%;
+    background-color: #d9d9d9;
 }
