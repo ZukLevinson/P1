@@ -28,8 +28,8 @@
                 <a href="../sell/sell.php">SELL</a>
                 <a id="login">
                     <?php
-                        if(isset($_SESSION['UserId'])){
-                            echo $_SESSION['UserId'];
+                        if(isset($_SESSION['UserName'])){
+                            echo $_SESSION['UserName'];
                         } else echo "LOGIN";
                     ?>
                 </a>

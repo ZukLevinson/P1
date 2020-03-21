@@ -7,6 +7,8 @@ $conn = OpenCon();
 ini_set('display_errors', '1');
 ini_set('error_reporting', E_ALL);
 
+$_SESSION['Cart'] = array();
+
 if (!isset($_SESSION['UserId']) ) {
     if (isset($_POST['user']) && isset($_POST['pass'])) {
         unset($_SESSION['Errors']);

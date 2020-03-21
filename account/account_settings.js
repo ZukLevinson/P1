@@ -13,7 +13,10 @@ function InOrUp(){
 }
 
 login.onclick = function(){
-    if(login.innerText !== 'LOGIN'){
-        window.location += '?logout=yes';
-    } else return window.location.href='../account/sign.php';
+    if (login.innerText === 'LOGIN') {
+        return window.location.href = '../account/sign.php';
+    } else {
+        return window.location.href = '../account/account.php'
+        // window.location += '?logout=yes';
+    }
 };

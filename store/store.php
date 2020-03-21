@@ -1,18 +1,21 @@
 <?php
     session_start();
+
     if(isset($_GET['logout'])){
         session_destroy();
         header('Location: ../home/index.php');
     }
+
 ?>
 
 <!DOCTYPE html>
 
 <html lang="en">
     <head>
-    <title>Store | ElectroStore</title>
-    <link rel="stylesheet" type="text/css" href="../home/styles.css"></head>
-    <body>
+        <title>Store | ElectroStore</title>
+        <link rel="stylesheet" type="text/css" href="../home/styles.css">
+    </head>
+    <div>
         <div class="header">
             <div class="links left">
                 <a href="../home/index.php">HOME</a>
@@ -50,10 +53,9 @@
             <div id="php_items">
                 <?php include('pull.php') ?>
             </div>
-        </div>
+        </div></div>
 
         <?php include("../normal/footer.html") ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="../account/account_settings.js"></script>
-    </body>
 </html>
