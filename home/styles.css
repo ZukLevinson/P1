@@ -352,3 +352,13 @@ label{
     padding-inline-start: 0px;
 
 }
+.line {
+    width:500px;
+    height:3px;
+    background-color: #737373;
+    margin:20px;
+}
+
+.account a{
+    font-size: 20px;
+}

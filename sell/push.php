@@ -1,5 +1,5 @@
 <?php
-include '../home/functions.php';
+include_once '../home/functions.php';
 
 session_start();
 $conn = OpenCon();
@@ -20,14 +20,13 @@ if ($ship == "No") { //Switch to the specific number
 
 if(isset($_SESSION['UserId'])) {
     $required = array('name', 'dscr', 'pric', 'quan', 'catg');
-    $error = false;
+
     foreach($required as $field) {
         if (empty($_POST[$field])) {
             $_SESSION['Errors_sell'] = array("Enter all fields.");
             header('Location: ../sell/sell.php');
         }
     }
-
     unset($_SESSION['Errors_sell']);
     $user = $_SESSION['UserId'];
 

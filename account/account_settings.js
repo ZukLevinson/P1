@@ -1,18 +1,6 @@
 const in_box = document.getElementById("sign-in");
 const up_box = document.getElementById("sign-up");
 const login = document.getElementById("login");
-const signage = document.getElementById("signage");
-
-/*signage.onclick = function(){
-    alert("works");
-    if(in_box.style.display === "block"){
-        in_box.style.display = "none";
-        up_box.style.display = "block";
-    } else {
-        in_box.style.display = "block";
-        up_box.style.display = "none";
-    }
-}*/
 
 function InOrUp(){
     if(in_box.style.display === "block"){

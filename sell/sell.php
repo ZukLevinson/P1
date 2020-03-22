@@ -42,7 +42,7 @@
                                 <tr>
                                     <td>
                                         <ul>Price</ul>
-                                        <input type="number" name="pric">
+                                        <input step="0.01" type="number" name="pric">
                                     </td>
                                 </tr>
                             </table>
@@ -53,7 +53,7 @@
                             <ul>Free Shipping</ul>
                             <label for="Yes"><input type="radio" name="ship" value="0" id="Yes" checked="checked"/>Yes</label>
                             <label for="No"><input type="radio" name="ship" value="No" id="No" />No</label>
-                            <input type="number" name="ship_other" id="ship_other">
+                            <input step="0.01" type="number" name="ship_other" id="ship_other">
                         </td>
                         <td>
                             <ul>Quantity</ul>

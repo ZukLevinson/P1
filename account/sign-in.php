@@ -1,7 +1,8 @@
 <?php
+    session_start();
+
     include_once '../home/functions.php';
 
-    session_start();
     $conn = OpenCon();
 
     ini_set('display_errors', '1');

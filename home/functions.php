@@ -81,8 +81,9 @@ EOT;
         $sessionId = session_id();
         $conn = OpenCon();
         $sql = "DELETE FROM user_session WHERE UserID = '$userId' AND Session = '$sessionId'";
+        $result = mysqli_query($conn, $sql);
         CloseCon($conn);
-        return mysqli_query($conn, $sql) ? true : false;
+        return $result ? true : false;
     }
 
     function SumTotal()
