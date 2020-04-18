@@ -5,7 +5,6 @@
     template_header('Account');
 
     if (isset($_GET['logout'])) {
-        RemoveSession();
         session_destroy();
         header('Location: ../home/index.php');
     }

@@ -76,18 +76,6 @@ EOT;
 EOT;
     }
 
-    function RemoveSession()
-    {
-        $userId = $_SESSION['UserId'];
-        setcookie("userID", "");
-        $sessionId = session_id();
-        $conn = OpenCon();
-        $sql = "DELETE FROM user_session WHERE UserID = '$userId' AND Session = '$sessionId'";
-        $result = mysqli_query($conn, $sql);
-        CloseCon($conn);
-        return $result ? true : false;
-    }
-
     function SumTotal()
     {
         $userId = $_COOKIE['userID'];

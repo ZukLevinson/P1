@@ -9,7 +9,7 @@
         header('Location: ../home/index.php');
     }
     if (isset($_SESSION['UserId'])){
-        header('Location: ../account/account.php?user='.$_COOKIE['userID']);
+        header('Location: ../account/account.php?user='.$_SESSION['UserId']);
     }
 ?>
 <div class="login" id="sign-in" style="display: block;">

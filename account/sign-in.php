@@ -29,15 +29,6 @@
 
                     setcookie("userID",$_SESSION['UserId']);
 
-                    $userId = $_SESSION['UserId'];
-                    $sessionId = session_id();
-                    $sql = "INSERT INTO user_session (UserID, Session) VALUES ('$userId','$sessionId')";
-                    if (mysqli_query($conn, $sql)) {
-                        $posting = TRUE; //Worked
-                    } else {
-                        $posting = FALSE; //Reason lies within mysqli_error($conn)
-                    }
-
                     header('Location: ../account/account.php?user='.$_SESSION['UserId']);
                 } else {
                     $_SESSION['Errors'] = "Your username or password was incorrect.";
