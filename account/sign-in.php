@@ -17,13 +17,14 @@
             $password_raw = $_POST['pass'];
             $password_encrypted = hash('sha256', $password_raw);
 
-            $sql = "SELECT ID, Username FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$password_encrypted'";
+            $sql = "SELECT ID, Username, Kind FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$password_encrypted'";
 
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) != 0) {
-                $row = $result->fetch_array(MYSQLI_ASSOC);
+                $row = mysqli_fetch_array($result);
                 $_SESSION['UserId'] = $row['ID'];
                 $_SESSION['UserName'] = $row['Username'];
+                $_SESSION['Kind'] = $row['Kind'];
 
                 setcookie("userID",$_SESSION['UserId']);
 

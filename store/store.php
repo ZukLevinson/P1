@@ -6,10 +6,23 @@
     if(isset($_SESSION['UserName'])) {
         if (!isset($_SESSION['Cart']))
             $_SESSION['Cart'] = array();
-
-        if (isset($_GET['add_to_cart'])) {
-            array_push($_SESSION['Cart'], $_GET['add_to_cart']);
-            header('Location: store.php');
+        if (isset($_GET['remove']) and isset($_SESSION['Kind'])){
+            if($_SESSION['Kind'] == '1'){
+                $conn = OpenCon();
+                $rem_id = $_GET['remove'];
+                $sql = "DELETE FROM data WHERE ID = '$rem_id'";
+                mysqli_query($conn, $sql);
+                CloseCon($conn);
+            }
+        } else {
+            if (isset($_GET['add_to_cart'])) {
+                array_push($_SESSION['Cart'], $_GET['add_to_cart']);
+                header('Location: store.php');
+            }
+        }
+    } else {
+        if(isset($_GET['add_to_cart'])){
+            header('Location: ../account/sign.php');
         }
     }
     if(isset($_GET['item'])){

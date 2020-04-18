@@ -25,9 +25,11 @@
         if (isset($_SESSION['UserId'])) {
             $username = $_SESSION['UserName'];
             $userId = $_SESSION['UserId'];
+            $kind = $_SESSION['Kind'] == '1' ? '(Admin)' : '';
         } else {
             $username = 'LOGIN';
             $userId = '';
+            $kind = '';
         }
 
         if (isset($_SESSION['Cart'])) {
@@ -56,7 +58,7 @@
                         </div>
                         <div class="links right">
                             <a href="../sell/sell.php">SELL</a>
-                            <a id="login" href="../account/account.php?user=$userId">$username</a>
+                            <a id="login" href="../account/account.php?user=$userId">$username $kind</a>
                             <a id="cart" href="../store/cart.php">$cart_status</a>
                         </div>
                     </div>

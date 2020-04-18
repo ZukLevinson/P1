@@ -12,7 +12,6 @@
                 <form name="form" action="../store/pay.php" method="POST">
                     <tr>
                         <td style="border-bottom:1px solid black;" colspan="3">Item</td>
-                        <td style="border-bottom:1px solid black;">Quantity</td>
                         <td style="border-bottom:1px solid black;">Price</td>
                     </tr>
 EOT;
@@ -56,9 +55,6 @@ EOT;
                                 <ul>
                                     $description
                                 </ul>
-                            </td>
-                            <td>
-                                <p>1</p>
                             </td>
                             <td>
                                 <p>$price$</p>
