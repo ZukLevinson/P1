@@ -15,33 +15,39 @@
             //pull form fields into php variables
             $user = $_POST['user'];
             $password_raw = $_POST['pass'];
-            $password_encrypted = hash('sha256', $password_raw);
 
-            $sql = "SELECT ID, Username, Kind FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$password_encrypted'";
+            if($user !='' and $password_raw !=''){
+                $password_encrypted = hash('sha256', $password_raw);
+                $sql = "SELECT ID, Username, Kind FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$password_encrypted'";
 
-            $result = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($result) != 0) {
-                $row = mysqli_fetch_array($result);
-                $_SESSION['UserId'] = $row['ID'];
-                $_SESSION['UserName'] = $row['Username'];
-                $_SESSION['Kind'] = $row['Kind'];
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) != 0) {
+                    $row = mysqli_fetch_array($result);
+                    $_SESSION['UserId'] = $row['ID'];
+                    $_SESSION['UserName'] = $row['Username'];
+                    $_SESSION['Kind'] = $row['Kind'];
 
-                setcookie("userID",$_SESSION['UserId']);
+                    setcookie("userID",$_SESSION['UserId']);
 
-                $userId = $_SESSION['UserId'];
-                $sessionId = session_id();
-                $sql = "INSERT INTO user_session (UserID, Session) VALUES ('$userId','$sessionId')";
-                if (mysqli_query($conn, $sql)) {
-                    $posting = TRUE; //Worked
+                    $userId = $_SESSION['UserId'];
+                    $sessionId = session_id();
+                    $sql = "INSERT INTO user_session (UserID, Session) VALUES ('$userId','$sessionId')";
+                    if (mysqli_query($conn, $sql)) {
+                        $posting = TRUE; //Worked
+                    } else {
+                        $posting = FALSE; //Reason lies within mysqli_error($conn)
+                    }
+
+                    header('Location: ../account/account.php?user='.$_SESSION['UserId']);
                 } else {
-                    $posting = FALSE; //Reason lies within mysqli_error($conn)
+                    $_SESSION['Errors'] = "Your username or password was incorrect.";
+                    header('Location: ../account/sign.php');
                 }
-
-                header('Location: ../account/account.php?user='.$_SESSION['UserId']);
             } else {
-                $_SESSION['Errors'] = array("Your username or password was incorrect.");
+                $_SESSION['Errors'] = "Enter username and password";
                 header('Location: ../account/sign.php');
             }
+
         }
     }
 

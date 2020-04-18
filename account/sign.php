@@ -36,9 +36,7 @@
                 <td style="padding-bottom:5px;">
                     <?php if (isset($_SESSION['Errors'])): ?>
                         <div class="form-errors">
-                            <?php foreach ($_SESSION['Errors'] as $error): ?>
-                                <ul style="color:darkred;"><?php echo $error ?></ul>
-                            <?php endforeach; ?>
+                            <ul style="color:darkred;"><?php echo $_SESSION['Errors']; ?></ul>
                         </div>
                     <?php endif; ?>
                     <button type="submit">Lets Go!</button>

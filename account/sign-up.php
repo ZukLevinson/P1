@@ -7,30 +7,36 @@
     $user = $_POST['user'];
     $emil = $_POST['emil'];
     $pass_raw = $_POST['pass'];
-    $pass_encrypted = hash('sha256', $pass_raw);
 
-    $sql = "INSERT INTO users (Username, Password, Email, Kind) VALUES ('$user', '$pass_encrypted', '$emil', '0')";
-
-    if (mysqli_query($conn, $sql)) {
-        $posting = TRUE; //Worked
-
-        $sql = "SELECT ID, Username, Kind FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$pass_encrypted'";
-
+    if($user != '' and $pass_raw != ''){
+        $sql = "SELECT Username, Email FROM users WHERE (Username = '$user' OR Email = '$user')";
         $result = mysqli_query($conn, $sql);
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        $_SESSION['UserId'] = $row['ID'];
-        $_SESSION['UserName'] = $row['Username'];
-        $_SESSION['Kind'] = $row['Kind'];
+        if(mysqli_num_rows($result) == 0){
+            $pass_encrypted = hash('sha256', $pass_raw);
+            $sql = "INSERT INTO users (Username, Password, Email, Kind) VALUES ('$user', '$pass_encrypted', '$emil', '0')";
+            mysqli_query($conn, $sql);
+            $sql = "SELECT ID, Username, Kind FROM users WHERE (Username = '$user' OR Email = '$user') AND Password = '$pass_encrypted'";
 
-        setcookie("userID", $_SESSION['UserId']);
+            $result = mysqli_query($conn, $sql);
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+            $_SESSION['UserId'] = $row['ID'];
+            $_SESSION['UserName'] = $row['Username'];
+            $_SESSION['Kind'] = $row['Kind'];
 
-        $userId = $_SESSION['UserId'];
-        header('Location: ../account/account.php?user='.$_SESSION['UserId']);
+            setcookie("userID", $_SESSION['UserId']);
+
+            $userId = $_SESSION['UserId'];
+            header('Location: ../account/account.php?user='.$_SESSION['UserId']);
+        } else {
+            $_SESSION['Errors'] = 'Username or email already signed up';
+            header('Location: ../account/sign.php');
+        }
+
     } else {
-        $posting = FALSE;
-        $_SESSION['Errors'] = mysqli_error($conn);
+        $_SESSION['Errors'] = 'Fill username and password';
         header('Location: ../account/sign.php');
     }
+
 
     //close to sql
     CloseCon($conn);
