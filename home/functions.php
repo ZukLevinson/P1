@@ -83,7 +83,7 @@ EOT;
         $sql = "SELECT Total FROM transactions WHERE UserID = '$userId'";
         $result = mysqli_query($conn, $sql);
         $total = 0;
-        while ($row = $result->fetch_Array(MYSQLI_ASSOC)) {
+        while ($row = mysqli_fetch_array($result)) {
             $total += $row['Total'];
         }
         CloseCon($conn);

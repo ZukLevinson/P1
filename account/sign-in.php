@@ -5,11 +5,8 @@
 
     $conn = OpenCon();
 
-    ini_set('display_errors', '1');
-    ini_set('error_reporting', E_ALL);
-
     if (!isset($_SESSION['UserId'])) {
-        if (isset($_POST['user']) && isset($_POST['pass'])) {
+        if (isset($_POST['user']) and isset($_POST['pass'])) {
             unset($_SESSION['Errors']);
 
             //pull form fields into php variables

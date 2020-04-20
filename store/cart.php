@@ -24,8 +24,8 @@ EOT;
             $cart = $_SESSION['Cart'];
             $cartSQL = implode(',',$cart);
 
-
             foreach ($cart as &$itemId){
+
                 $sql = "SELECT * FROM data WHERE ID = '$itemId'";
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_array($result);
@@ -40,10 +40,8 @@ EOT;
                 $totalShipping += $shipping;
                 $sellerId = $row['SellerID'];
                 $image = $row['Image'];
-                $error = isset($_SESSION['Errors_sell']) ? $_SESSION['Errors_sell'] : "";
 
                 echo <<<EOT
-                        <a>$error</a>
                         <tr>
                             <td style="width:100px;">
                                 <img src="../images/uploads/$image" alt="Item 1" style="max-width:100%;max-height:100%;">

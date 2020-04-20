@@ -10,8 +10,6 @@
         $search = $_GET['search'];
         $sql = "SELECT * FROM data WHERE Item LIKE '%$search%'";
     }
-    ini_set('display_errors', '1');
-    ini_set('error_reporting', E_ALL);
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         echo "<a>" . mysqli_error($conn) . "</a>";
@@ -67,6 +65,4 @@ EOT;
             }
         }
     }
-    ini_set('display_errors', '1');
-    ini_set('error_reporting', E_ALL);
     CloseCon($conn);

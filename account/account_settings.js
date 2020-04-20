@@ -17,10 +17,5 @@ login.onclick = function(){
         return window.location.href = '../account/sign.php';
     } else {
         return window.location.href = '../account/account.php'
-        // window.location += '?logout=yes';
     }
 };
-
-function colorRed(id){
-    document.getElementById(id).style.color="Red";
-}

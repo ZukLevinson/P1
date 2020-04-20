@@ -206,15 +206,11 @@ EOT;
         <div class="line"></div>
         <a>Statistics</a>
         </br> Number of users: $totalUsers
-        </br> Amount of cash unpaid: $totalPaid$
-        </br> Amount of cash paid: $totalNotPaid$
+        </br> Amount of cash unpaid: $totalNotPaid$
+        </br> Amount of cash paid: $totalPaid$
 EOT;
             }
-            echo <<<EOT
-
-    </div>
-EOT;
-
+            echo "</div>";
         }
 
     }

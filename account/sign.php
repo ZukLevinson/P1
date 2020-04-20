@@ -43,8 +43,8 @@
                 </td>
             </tr>
             <tr>
-                <td onclick="InOrUp()">
-                    <a style="font-size: 12px;">Don't have a user yet? <a id="signage" style="text-decoration: underline;font-size: 12px; color:black;">Sign up!</a></a>
+                <td>
+                    <a style="font-size: 12px;">Don't have a user yet? <a onclick="InOrUp()" style="text-decoration: underline;font-size: 12px; color:black;">Sign up!</a></a>
                 </td>
             </tr>
         </table>
