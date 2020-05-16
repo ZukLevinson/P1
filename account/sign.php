@@ -2,7 +2,6 @@
     session_start();
 
     include_once('../home/functions.php');
-    template_header('Sign in or Sign up');
 
     if (isset($_GET['logout'])) {
         session_destroy();
@@ -12,6 +11,7 @@
         header('Location: ../account/account.php?user='.$_SESSION['UserId']);
     }
 ?>
+<?php template_header('Sign in or Sign up'); ?>
 <div class="login" id="sign-in" style="display: block;">
     <a>Log In</a>
     <form action="../account/sign-in.php" method="POST">

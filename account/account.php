@@ -8,10 +8,8 @@
         header('Location: ../home/index.php');
     }
 
-    if (isset($_GET['user'])) {
-        if($_GET['user'] == ""){
-            header('Location: ../account/sign.php');
-        }
+    if($_GET['user'] == ""){
+        header('Location: ../account/sign.php');
     } else {
         template_header('Account');
         $sumTotal = SumTotal();

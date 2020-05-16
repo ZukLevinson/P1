@@ -2,9 +2,9 @@
     session_start();
 
     include_once('../home/functions.php');
-    template_header('Cart');
 
     if(isset($_SESSION['UserId'])){
+        template_header('Cart');
         echo <<<EOT
         <div class="cart">
             <a>Cart</a>
