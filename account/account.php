@@ -2,16 +2,18 @@
     session_start();
 
     include_once('../home/functions.php');
-    template_header('Account');
 
     if (isset($_GET['logout'])) {
         session_destroy();
         header('Location: ../home/index.php');
     }
 
-    if ($_GET['user'] == "") {
-        header('Location: ../account/sign.php');
+    if (isset($_GET['user'])) {
+        if($_GET['user'] == ""){
+            header('Location: ../account/sign.php');
+        }
     } else {
+        template_header('Account');
         $sumTotal = SumTotal();
 
         $user = $_SESSION['UserId'];
