@@ -206,7 +206,13 @@ body, html{
     width:100%;
     text-align: left;
 }
-.login input[type="text"], input[type="password"]{
+.login input[type="text"], input[type="password"], input[type="email"]{
+    border:none;
+    display:inline-block;
+    border-bottom:1px solid darkgrey;
+    background-color: #d9d9d9;
+}
+#emil{
     border:none;
     display:inline-block;
     border-bottom:1px solid darkgrey;

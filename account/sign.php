@@ -58,7 +58,7 @@
                 <td>
                     <ul>Email:</ul>
                     <label>
-                        <input type="text" name="emil">
+                        <input type="email" name="emil" style="border:none;display:inline-block;border-bottom:1px solid darkgrey;background-color: #d9d9d9;">
                     </label>
                 </td>
             </tr>
